@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\dette;
 use App\Http\Requests\StoredetteRequest;
 use App\Http\Requests\UpdatedetteRequest;
+use Illuminate\Support\Facades\Gate;
 
 class DetteController extends Controller
 {

@@ -37,6 +37,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('cancel-colocation',function($user){
             return $user->is_owner===true;
         });
+        
         Gate::define('add-expense',function($user){
 
         return $user->memberships() ->whereHas('colocation', function ($query) {
@@ -44,7 +45,7 @@ class AuthServiceProvider extends ServiceProvider
                     })->exists();
             });
 
-        Gate::define('mark-expense-aspayed',function($user,$dette){
+        Gate::define('mark-as-payed',function($user,$dette){
             return $user->id===$dette->user_id;
         });
 

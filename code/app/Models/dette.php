@@ -10,6 +10,8 @@ class dette extends Model
     /** @use HasFactory<\Database\Factories\DetteFactory> */
     use HasFactory;
 
+    protected $fillable=['is_payed'];
+
     public function user(){
         return $this->belongsTo(User::class);
     }
