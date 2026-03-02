@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/expense',[ExpenseController::class,'index'])->name('expense.index');
     Route::post('/expense',[ExpenseController::class,'store'])->name('expense.store');
     Route::get('/dette',[DetteController::class,'index'])->name('dette.index');
+    Route::get('/markaspayed/{id}',[DetteController::class,'markaspayed'])->name('dette.markaspayed');
     Route::get('quit',[ColocationController::class,'quitColocation'])->name('colocation.quit');
     Route::get('/admin',[AdminDashboardController::class,'index'])->name('admin.dashboard')->middleware('can:show-administration');
     Route::get('/ban/{user_id}',[RegisteredUserController::class,'ban'])->name('user.ban')->middleware('can:show-administration');

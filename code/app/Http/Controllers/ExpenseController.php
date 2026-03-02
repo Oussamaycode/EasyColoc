@@ -38,14 +38,17 @@ class ExpenseController extends Controller
     {
         $user=auth()->user();
         Gate::authorize('add-expense');
+        $membership=Membership::where('user_id',$user->id)->first();
+        $colocation=Colocation::where('id',$membership->colocation_id)->where('is_active',true)->first();
         $expense=Expense::create(['amount'=>$request->amount,
         'description'=>$request->description,
         'user_id'=>$user->id,
         'date'=>$request->date,
+        'colocation_id'=>$colocation->id,
         'categorie_id'=>$request->categorie_id]);
 
-        $membership=Membership::where('user_id',$user->id)->first();
-        $colocation=Colocation::where('id',$membership->colocation_id)->where('is_active',true)->first();
+        
+        
         $members=$colocation->users;
         $numberofmembers=$colocation->users()->count();
         $amount=$expense->amount/$numberofmembers;
