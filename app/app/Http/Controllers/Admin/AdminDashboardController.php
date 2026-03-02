@@ -13,10 +13,11 @@ class AdminDashboardController extends Controller
 {
     public function index(){
         $memberships=Membership::with(['colcoation','colocation.users','colocation.expenses','colocation.owner']);
+        $users=User::with(['membership','membership.colocation'])->get();
         $userCount=User::count();
         $bannedUsersCount=User::where('is_banned',true)->count();
         $expenseSum=Expense::sum('amount');
         $activeColocations=Colocation::where('is_active',true)->count();
-        return view('admin',compact('userCount','bannedUsersCount','expenseSum','activeColocations','memberships'));
+        return view('admin',compact('userCount','bannedUsersCount','expenseSum','activeColocations','memberships','users'));
     }
 }

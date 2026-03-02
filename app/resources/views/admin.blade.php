@@ -204,24 +204,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($memberships as $membership)
+                                @foreach($users as $user)
                                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                                     <td class="py-3 px-4">
                                         <div class="flex items-center gap-3">
                                             <div class="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">JD</div>
-                                            <span class="font-medium text-gray-800">{{$membership->user->name}}</span>
+                                            <span class="font-medium text-gray-800">{{$user->name}}</span>
                                         </div>
                                     </td>
-                                    <td class="py-3 px-4 text-gray-600">{{$membership->user->email}}</td>
-                                    <td class="py-3 px-4 text-gray-600">15 jan 2024</td>
+                                    <td class="py-3 px-4 text-gray-600">{{$user->email}}</td>
+                                    <td class="py-3 px-4 text-gray-600">{{$user->created_at->format('d M Y')}}</td>
                                     <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">{{$membership->colocation->name}}</span>
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">{{$user->membership->colocation->name?? 'user is not in colocation'}}</span>
                                     </td>
                                     <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">{{$membership->role}}</span>
+                                        <span class="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">{{$user->membership->role?? 'user is not in colocation'}}</span>
                                     </td>
                                     <td class="py-3 px-4 text-center">
-                                        <button onclick="openBanModal('Jean Dupont')" class="text-red-600 hover:text-red-700 transition">
+                                        <a href="{{route('user.ban',['user_id'=>$user->id])}}" class="text-red-600 hover:text-red-700 transition">
                                             <i class="fas fa-ban"></i> Bannir
                                         </button>
                                     </td>
