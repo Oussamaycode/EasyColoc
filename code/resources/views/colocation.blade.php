@@ -17,6 +17,7 @@
 <body class="bg-gray-50">
     <div class="flex h-screen">
         <!-- Sidebar -->
+
         <aside class="sidebar w-64 bg-white shadow-lg fixed h-full z-10">
             <div class="p-6">
                 <div class="flex items-center gap-3">
@@ -29,19 +30,21 @@
 
             <nav class="px-4 pb-4">
                 <div class="space-y-1">
-                    <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 bg-indigo-50 text-indigo-600 rounded-lg font-medium">
                         <i class="fas fa-chart-pie w-5"></i>
                         Tableau de bord
                     </a>
-                    <a href="colocation.html" class="flex items-center gap-3 px-4 py-3 bg-indigo-50 text-indigo-600 rounded-lg font-medium">
+                    <a href="colocation.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-house-user w-5"></i>
                         Ma Colocation
                     </a>
-                    <a href="expenses.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    @can('add-expense')
+                    <a href="{{route('expense.index')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-receipt w-5"></i>
                         Dépenses
                     </a>
-                    <a href="balances.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    @endcan
+                    <a href="{{route('dette.index')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-scale-balanced w-5"></i>
                         Soldes
                     </a>
@@ -49,7 +52,7 @@
                         <i class="fas fa-users w-5"></i>
                         Membres
                     </a>
-                                        <a href="join-colocation.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                                        <a href="{{route('colocation.join')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-sign-in-alt w-5"></i>
                         Rejoindre
                     </a>
@@ -58,7 +61,7 @@
                 @can('show-administration')
                 <div class="mt-8 pt-4 border-t border-gray-200">
                     <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Administration</p>
-                    <a href="admin.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    <a href="{{route('admin.dashboard')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-shield-alt w-5"></i>
                         Panel Admin
                     </a>
@@ -72,8 +75,8 @@
                         <i class="fas fa-user text-gray-600"></i>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-gray-900 truncate">Jean Dupont</p>
-                        <p class="text-xs text-gray-500 truncate">jean@email.com</p>
+                        <p class="text-sm font-medium text-gray-900 truncate">{{auth()->user()->name}}</p>
+                        <p class="text-xs text-gray-500 truncate">{{auth()->user()->email}}</p>
                     </div>
                     <a href="login.html" class="text-gray-400 hover:text-red-500 transition">
                         <i class="fas fa-sign-out-alt"></i>

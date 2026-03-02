@@ -15,6 +15,7 @@
 <body class="bg-gray-50">
     <div class="flex h-screen">
         <!-- Sidebar -->
+        <!-- Sidebar -->
         <aside class="sidebar w-64 bg-white shadow-lg fixed h-full z-10">
             <div class="p-6">
                 <div class="flex items-center gap-3">
@@ -27,7 +28,7 @@
 
             <nav class="px-4 pb-4">
                 <div class="space-y-1">
-                    <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 bg-indigo-50 text-indigo-600 rounded-lg font-medium">
                         <i class="fas fa-chart-pie w-5"></i>
                         Tableau de bord
                     </a>
@@ -35,11 +36,13 @@
                         <i class="fas fa-house-user w-5"></i>
                         Ma Colocation
                     </a>
-                    <a href="expenses.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    @can('add-expense')
+                    <a href="{{route('expense.index')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-receipt w-5"></i>
                         Dépenses
                     </a>
-                    <a href="balances.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    @endcan
+                    <a href="{{route('dette.index')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-scale-balanced w-5"></i>
                         Soldes
                     </a>
@@ -47,15 +50,21 @@
                         <i class="fas fa-users w-5"></i>
                         Membres
                     </a>
+                                        <a href="{{route('colocation.join')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                        <i class="fas fa-sign-in-alt w-5"></i>
+                        Rejoindre
+                    </a>
                 </div>
 
+                @can('show-administration')
                 <div class="mt-8 pt-4 border-t border-gray-200">
                     <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Administration</p>
-                    <a href="admin.html" class="flex items-center gap-3 px-4 py-3 bg-indigo-50 text-indigo-600 rounded-lg font-medium">
+                    <a href="{{route('admin.dashboard')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-shield-alt w-5"></i>
                         Panel Admin
                     </a>
                 </div>
+                @endcan
             </nav>
 
             <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">

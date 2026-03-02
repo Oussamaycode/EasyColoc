@@ -43,7 +43,7 @@
                         Dépenses
                     </a>
                     @endcan
-                    <a href="balances.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    <a href="{{route('dette.index')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-scale-balanced w-5"></i>
                         Soldes
                     </a>
@@ -51,7 +51,7 @@
                         <i class="fas fa-users w-5"></i>
                         Membres
                     </a>
-                                        <a href="join-colocation.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                                        <a href="{{route('colocation.join')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-sign-in-alt w-5"></i>
                         Rejoindre
                     </a>
@@ -60,7 +60,7 @@
                 @can('show-administration')
                 <div class="mt-8 pt-4 border-t border-gray-200">
                     <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Administration</p>
-                    <a href="admin.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    <a href="{{route('admin.dashboard')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-shield-alt w-5"></i>
                         Panel Admin
                     </a>
