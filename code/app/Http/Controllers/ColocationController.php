@@ -35,7 +35,7 @@ class ColocationController extends Controller
     {
         $user=Auth::user();
         $name=$request->name;
-        $colocation=Colocation::create(['name'=>$name,'owner_id'=>Auth::id()]);
+        $colocation=Colocation::create(['name'=>$name,'owner_id'=>$user->id]);
         $colocation->users()->attach($user->id,['role'=>'owner']);
         $user->update(['is_owner'=>true]);
         return redirect()->route('colocation.index');
