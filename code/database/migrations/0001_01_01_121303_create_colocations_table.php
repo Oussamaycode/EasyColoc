@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->uuid('token')->unique();
+            $table->foreignId('owner_id')->constrained('users');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

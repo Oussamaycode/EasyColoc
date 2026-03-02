@@ -5,6 +5,7 @@ use App\Http\Controllers\ColocationController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\DetteController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dette',[DetteController::class,'index'])->name('dette.index');
     Route::get('quit',[ColocationController::class,'quitColocation'])->name('colocation.quit');
     Route::get('/admin',[AdminDashboardController::class,'index'])->name('admin.dashboard')->middleware('can:show-administration');
-    Route::get('/ban/{id}',[RegisteredUserController::class,'ban'])->name('user.ban')->middleware('can:show-administration');
+    Route::get('/ban/{user_id}',[RegisteredUserController::class,'ban'])->name('user.ban')->middleware('can:show-administration');
 });
 
 require __DIR__.'/auth.php';

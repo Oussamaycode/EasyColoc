@@ -9,7 +9,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules;
+
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -60,12 +62,13 @@ class RegisteredUserController extends Controller
 
     public function ban($user_id){
         $user=User::find($user_id);
-        $colocation=$user->colocations()->where('is_active',true)->firstOrFail();
+        $colocation=$user->colocations()->where('is_active',true)->first();
         $expenses=$user->expenses()->get();
         if ($user->is_owner){
             return back()->with('error', 'Owner of collocation cannot be banned.');
         }
 
+        if($colocation){
         $owner=$colocation->users()->where('is_owner',true)->first();
 
         foreach($expenses as $expense){
@@ -77,10 +80,13 @@ class RegisteredUserController extends Controller
                 }
         }
         $colocation->users()->detach($user->id);
+        }
         $user->decrement('reputation');
         $user->is_banned=true;
         $user->save();
         DB::table('sessions')->where('user_id',$user_id)->delete();
+
+        return redirect()->back();
     }
         
     }

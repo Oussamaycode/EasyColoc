@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('image')->nullable();
             $table->integer('reputation')->default(1)->unsigned();
-            $table->foreignId('colocation_id')->nullable()->constrained();
             $table->boolean('is_owner')->default('false');
             $table->boolean('is_banned')->default('false');
             $table->string('role');

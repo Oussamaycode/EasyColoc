@@ -13,7 +13,7 @@ class Colocation extends Model
 
     use HasUuids;
 
-    protected $fillable=['name'];
+    protected $fillable=['name','owner_id'];
 
     public function uniqueIds(): array
     {
@@ -29,11 +29,11 @@ class Colocation extends Model
     }
 
     public function expenses(){
-        return $this->hasMany(Colocation::class);
+        return $this->hasMany(Expense::class);
     }
 
     public function owner(){
-        return $this->hasOne(User::class)->where('is_owner',true);
+    return $this->belongsTo(User::class, 'owner_id');
     }
 
 }

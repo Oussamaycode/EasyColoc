@@ -12,8 +12,8 @@ use App\Models\Membership;
 class AdminDashboardController extends Controller
 {
     public function index(){
-        $memberships=Membership::with(['colcoation','colocation.users','colocation.expenses','colocation.owner']);
-        $users=User::with(['membership','membership.colocation'])->get();
+        $memberships=Membership::with(['colocation','colocation.users','colocation.expenses','colocation.owner'])->get();
+        $users=User::with(['memberships','memberships.colocation'])->get();
         $userCount=User::count();
         $bannedUsersCount=User::where('is_banned',true)->count();
         $expenseSum=Expense::sum('amount');
