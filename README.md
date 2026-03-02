@@ -25,7 +25,7 @@ The app is built with **Laravel, Blade, Tailwind CSS, and JavaScript**.
 ## 🖥️ Tech Stack
 
 * **Backend:** Laravel (MVC architecture)
-* **Database:** MySQL / PostgreSQL via migrations
+* **Database:** PostgreSQL via migrations
 * **ORM:** Eloquent (relationships: hasMany, belongsToMany)
 * **Authentication:** Laravel Breeze
 * **Frontend:** Blade + Tailwind CSS + native JavaScript
