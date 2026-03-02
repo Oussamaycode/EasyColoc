@@ -24,7 +24,7 @@
             <p class="text-gray-500 mt-2">Gérez vos colocations facilement</p>
         </div>
 
-        <form method='POST' action="{{route('login')}}" id="loginForm" class="space-y-5">
+        <form method='POST' action="{{route('login')}}"  class="space-y-5">
             @csrf
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
@@ -63,19 +63,5 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Simulation connexion - remplacer par appel API Laravel
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            console.log('Connexion avec:', { email, password });
-            
-            // Redirection temporaire
-            alert('Connexion simulée - Redirection vers le tableau de bord');
-            window.location.href = 'dashboard.html';
-        });
-    </script>
 </body>
 </html>

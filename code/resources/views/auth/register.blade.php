@@ -74,7 +74,7 @@
         <div class="mt-6 text-center">
             <p class="text-gray-600">
                 Déjà un compte ? 
-                <a href="login.html" class="text-indigo-600 font-medium hover:text-indigo-700">Se connecter</a>
+                <a href="{{route('login')}}" class="text-indigo-600 font-medium hover:text-indigo-700">Se connecter</a>
             </p>
         </div>
     </div>
