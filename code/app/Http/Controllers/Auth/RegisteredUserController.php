@@ -88,6 +88,13 @@ class RegisteredUserController extends Controller
 
         return redirect()->back();
     }
+
+    public function showmembers(){
+        $colocation=auth()->user()->colocation->where('is_active',true);
+        $members=Membership::where('colocation_id',$colocation->id)->with('colocation','colocation.users','colocation.owner','colocation.expenses','colocation.expenses.dettes')->get();
+
+        return view('members',compact('members'));
+    }
         
     }
 

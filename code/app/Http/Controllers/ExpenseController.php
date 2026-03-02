@@ -57,7 +57,9 @@ class ExpenseController extends Controller
         foreach($members as $member)
 
         if($member->id!=$user->id) {
-          $expense->users()->attach($member->id,['amount'=>$amount]);
+          $solde=$member->solde;
+          $solde->decrement($amount);
+          $expense->users()->attach($member->id,['solde'=>$solde]);
         } 
         
         return redirect()->route('expense.index');

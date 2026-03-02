@@ -27,4 +27,8 @@ class expense extends Model
     public function colocation(){
         return $this->belongsTo(Colocation::class);
     }
+
+    public function dettes(){
+        return $this->hasMany(Dette::class);
+    }
 }

@@ -316,6 +316,7 @@
                             </thead>
                             <tbody>
                                 @foreach($users as $user)
+                                @if($user->is_banned===false)
                                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                                     <td class="py-3 px-4">
                                         <div class="flex items-center gap-3">
@@ -337,6 +338,7 @@
                                         </button>
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
 
 
@@ -379,30 +381,13 @@
         
                                 </tr>
                                 @endforeach
-                                <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-medium text-gray-800">Maison Lyon</td>
-                                    <td class="py-3 px-4 text-gray-600">Sophie Martin</td>
-                                    <td class="py-3 px-4 text-gray-600">4</td>
-                                    <td class="py-3 px-4 text-gray-600">€2,890.00</td>
-                                    <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Active</span>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-medium text-gray-800">Studio Bordeaux</td>
-                                    <td class="py-3 px-4 text-gray-600">Lucas Bernard</td>
-                                    <td class="py-3 px-4 text-gray-600">2</td>
-                                    <td class="py-3 px-4 text-gray-600">€450.00</td>
-                                    <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-red-100 text-red-700 rounded-full text-xs">Annulée</span>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
                 <!-- Banned Tab -->
+                
                 <div id="content-banned" class="p-6 hidden">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-bold text-gray-800">Utilisateurs bannis</h3>
@@ -419,38 +404,26 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($users as $user)
+                                @if($user->is_banned===true)
                                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                                     <td class="py-3 px-4">
                                         <div class="flex items-center gap-3">
                                             <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white text-sm font-bold">TM</div>
-                                            <span class="font-medium text-gray-800">Thomas Moreau</span>
+                                            <span class="font-medium text-gray-800">{{$user->name}}</span>
                                         </div>
                                     </td>
-                                    <td class="py-3 px-4 text-gray-600">thomas@email.com</td>
+                                    <td class="py-3 px-4 text-gray-600">{{$user->email}}</td>
                                     <td class="py-3 px-4 text-gray-600">10 fév 2024</td>
                                     <td class="py-3 px-4 text-gray-600">Comportement inapproprié</td>
                                     <td class="py-3 px-4 text-center">
-                                        <button onclick="openUnbanModal('Thomas Moreau')" class="text-green-600 hover:text-green-700 transition">
+                                        <a href=""  class="text-green-600 hover:text-green-700 transition">
                                             <i class="fas fa-undo"></i> Débannir
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
-                                <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                    <td class="py-3 px-4">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white text-sm font-bold">AC</div>
-                                            <span class="font-medium text-gray-800">Alice Chen</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-4 text-gray-600">alice@email.com</td>
-                                    <td class="py-3 px-4 text-gray-600">5 fév 2024</td>
-                                    <td class="py-3 px-4 text-gray-600">Fraude</td>
-                                    <td class="py-3 px-4 text-center">
-                                        <button onclick="openUnbanModal('Alice Chen')" class="text-green-600 hover:text-green-700 transition">
-                                            <i class="fas fa-undo"></i> Débannir
-                                        </button>
-                                    </td>
-                                </tr>
+                                @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

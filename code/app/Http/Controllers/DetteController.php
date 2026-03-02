@@ -22,6 +22,7 @@ class DetteController extends Controller
         $dette=Dette::findOrFail($id);
         Gate::authorize('mark-as-payed',$dette);
         $dette->update(['is_payed'=>true]);
+        $dette->expense->user->increment('solde',$dette->amount);
         return redirect()->route('dette.index');
     }
 

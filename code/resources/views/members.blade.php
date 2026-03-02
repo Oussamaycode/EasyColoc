@@ -99,6 +99,7 @@
             <!-- Members List -->
             <div class="space-y-4">
                 <!-- Owner -->
+                @foreach($memberhsips as $membership)
                 <div class="bg-white rounded-xl shadow-sm p-6">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-4">
