@@ -30,11 +30,11 @@
 
             <nav class="px-4 pb-4">
                 <div class="space-y-1">
-                    <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 bg-indigo-50 text-indigo-600 rounded-lg font-medium">
+                    <a href="{{route('dashboard.index')}}" class="flex items-center gap-3 px-4 py-3 bg-indigo-50 text-indigo-600 rounded-lg font-medium">
                         <i class="fas fa-chart-pie w-5"></i>
                         Tableau de bord
                     </a>
-                    <a href="colocation.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    <a href="{{route('colocation.index')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-house-user w-5"></i>
                         Ma Colocation
                     </a>

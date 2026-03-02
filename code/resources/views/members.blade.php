@@ -99,7 +99,7 @@
             <!-- Members List -->
             <div class="space-y-4">
                 <!-- Owner -->
-                @foreach($memberhsips as $membership)
+
                 <div class="bg-white rounded-xl shadow-sm p-6">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-4">
@@ -108,25 +108,29 @@
                             </div>
                             <div>
                                 <div class="flex items-center gap-2">
-                                    <h3 class="text-lg font-bold text-gray-800">Jean Dupont</h3>
+                                    <h3 class="text-lg font-bold text-gray-800">{{$membership->owner->name}}</h3>
                                     <span class="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium">Propriétaire</span>
                                 </div>
-                                <p class="text-gray-500">jean.dupont@email.com</p>
+                                <p class="text-gray-500">{{$membership->owner->email}}</p>
                                 <div class="flex items-center gap-4 mt-2">
                                     <span class="text-sm text-gray-500">
                                         <i class="fas fa-calendar mr-1"></i>
-                                        Membre depuis janvier 2024
+                                        Membre depuis {{$membership->owner->created_at}}
                                     </span>
                                     <span class="text-sm text-green-600">
                                         <i class="fas fa-star mr-1"></i>
-                                        Réputation: +12
+                                        Réputation: {{$membership->owner->reputation}}
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="text-right">
                             <p class="text-sm text-gray-500">Solde</p>
-                            <p class="text-xl font-bold text-green-600">+€45.50</p>
+                            @if($membership->owner->solde>=0)
+                            <p class="text-xl font-bold text-green-600">+{{$membership->owner->solde}}</p>
+                            @elseif
+                            <p class="text-xl font-bold text-red-600">-{{$membership->owner->solde}}</p>
+                            @endif
                         </div>
                     </div>
                 </div>

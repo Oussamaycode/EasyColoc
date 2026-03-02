@@ -77,6 +77,7 @@ class ColocationController extends Controller
                 if($dette->is_payed===false){
                 $expense->users()->detach($user->id);
                 $expense->users()->attach($owner->id,['amount'=>$amount]);
+                $owner->decrement('solde',$amount);
                 }
             }
         }

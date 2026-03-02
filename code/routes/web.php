@@ -20,9 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashbord',[DashboardContoller::class,'index'])->name('dashboard.index');
     Route::post('/dashboard',[ColocationController::class,'store'])->name('colocation.store')->middleware('can: create-join-colocation');
     Route::get('/colocation',[ColocationController::class,'index'])->name('colocation.index');
-    Route::get('/join',[ColocationController::class,'join'])->name('colocation.join.show')->middleware('can:reate-join-colocation');
+    Route::get('/join',[ColocationController::class,'join'])->name('colocation.join.show')->middleware('can:create-join-colocation');
     Route::post('/join',[ColocationController::class,'joinColocation'])->name('colocation.join')->middleware('can:create-join-colocation');
     Route::get('/expense',[ExpenseController::class,'index'])->name('expense.index')->middleware('can:add-expense');
     Route::post('/expense',[ExpenseController::class,'store'])->name('expense.store')->middleware('can:add-expense');
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('quit',[ColocationController::class,'quitColocation'])->name('colocation.quit');
     Route::get('/admin',[AdminDashboardController::class,'index'])->name('admin.dashboard')->middleware('can:show-administration');
     Route::get('/ban/{user_id}',[RegisteredUserController::class,'ban'])->name('user.ban')->middleware('can:show-administration');
+    Route::get('members',[RegisteredUserController::class,'showmembers'])->name('show.members')->middleware('can:create-join-colocation');
 });
 
 require __DIR__.'/auth.php';

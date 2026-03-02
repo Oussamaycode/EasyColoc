@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Membership;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -90,7 +91,7 @@ class RegisteredUserController extends Controller
     }
 
     public function showmembers(){
-        $colocation=auth()->user()->colocation->where('is_active',true);
+        $colocation=auth()->user()->colocations()->where('is_active',true)->first();
         $members=Membership::where('colocation_id',$colocation->id)->with('colocation','colocation.users','colocation.owner','colocation.expenses','colocation.expenses.dettes')->get();
 
         return view('members',compact('members'));
