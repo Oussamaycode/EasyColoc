@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->integer('reputation')->default(1)->unsigned();
             $table->boolean('is_owner')->default('false');
-            $table->integer('solde');
+            $table->integer('solde')->default('0');
             $table->boolean('is_banned')->default('false');
             $table->string('role');
             $table->rememberToken();

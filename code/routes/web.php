@@ -21,12 +21,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dashbord',[DashboardContoller::class,'index'])->name('dashboard.index');
-    Route::post('/dashboard',[ColocationController::class,'store'])->name('colocation.store')->middleware('can: create-join-colocation');
+    Route::post('/dashboard',[ColocationController::class,'store'])->name('colocation.store');
     Route::get('/colocation',[ColocationController::class,'index'])->name('colocation.index');
     Route::get('/join',[ColocationController::class,'join'])->name('colocation.join.show')->middleware('can:create-join-colocation');
-    Route::post('/join',[ColocationController::class,'joinColocation'])->name('colocation.join')->middleware('can:create-join-colocation');
+    Route::post('/join',[ColocationController::class,'joinColocation'])->name('colocation.join');
     Route::get('/expense',[ExpenseController::class,'index'])->name('expense.index')->middleware('can:add-expense');
-    Route::post('/expense',[ExpenseController::class,'store'])->name('expense.store')->middleware('can:add-expense');
+    Route::post('/expense',[ExpenseController::class,'store'])->name('expense.store');
     Route::get('/dette',[DetteController::class,'index'])->name('dette.index')->middleware('can:add-expense');
     Route::get('/markaspayed/{id}',[DetteController::class,'markaspayed'])->name('dette.markaspayed');
     Route::get('quit',[ColocationController::class,'quitColocation'])->name('colocation.quit');

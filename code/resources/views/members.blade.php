@@ -135,6 +135,7 @@
                     </div>
                 </div>
 
+                @foreach($members as $member)
                 <!-- Member 1 -->
                 <div class="bg-white rounded-xl shadow-sm p-6">
                     <div class="flex items-center justify-between">
@@ -144,71 +145,40 @@
                             </div>
                             <div>
                                 <div class="flex items-center gap-2">
-                                    <h3 class="text-lg font-bold text-gray-800">Marie Lefebvre</h3>
+                                    <h3 class="text-lg font-bold text-gray-800">{{$member->colocation->user->name}}</h3>
                                     <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">Membre</span>
                                 </div>
-                                <p class="text-gray-500">marie.lefebvre@email.com</p>
+                                <p class="text-gray-500">{{$member->colocation->user->email}}</p>
                                 <div class="flex items-center gap-4 mt-2">
                                     <span class="text-sm text-gray-500">
                                         <i class="fas fa-calendar mr-1"></i>
-                                        Membre depuis janvier 2024
+                                        Membre depuis {{$member->colcoation->user->created_at}}
                                     </span>
                                     <span class="text-sm text-green-600">
                                         <i class="fas fa-star mr-1"></i>
-                                        Réputation: +8
+                                        Réputation: {{$member->colocation->user->reputation}}
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="text-right">
+
                                 <p class="text-sm text-gray-500">Solde</p>
-                                <p class="text-xl font-bold text-red-600">-€21.00</p>
-                            </div>
+                             @if($member->colocation->user->solde>=0)
+                            <p class="text-xl font-bold text-green-600">+{{$membership->owner->solde}}</p>
+                            @elseif
+                            <p class="text-xl font-bold text-red-600">-{{$membership->owner->solde}}</p>
+                            @endif
                             <button onclick="openRemoveModal('Marie Lefebvre')" class="p-2 text-gray-400 hover:text-red-600 transition" title="Retirer le membre">
                                 <i class="fas fa-user-minus text-xl"></i>
                             </button>
                         </div>
                     </div>
                 </div>
+                @endforeach
 
-                <!-- Member 2 -->
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white text-xl font-bold">
-                                PD
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-2">
-                                    <h3 class="text-lg font-bold text-gray-800">Pierre Durand</h3>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">Membre</span>
-                                </div>
-                                <p class="text-gray-500">pierre.durand@email.com</p>
-                                <div class="flex items-center gap-4 mt-2">
-                                    <span class="text-sm text-gray-500">
-                                        <i class="fas fa-calendar mr-1"></i>
-                                        Membre depuis février 2024
-                                    </span>
-                                    <span class="text-sm text-green-600">
-                                        <i class="fas fa-star mr-1"></i>
-                                        Réputation: +5
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="text-right">
-                                <p class="text-sm text-gray-500">Solde</p>
-                                <p class="text-xl font-bold text-red-600">-€24.50</p>
-                            </div>
-                            <button onclick="openRemoveModal('Pierre Durand')" class="p-2 text-gray-400 hover:text-red-600 transition" title="Retirer le membre">
-                                <i class="fas fa-user-minus text-xl"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <!-- Pending Invitations -->
             <div class="mt-8">
