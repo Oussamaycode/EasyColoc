@@ -19,7 +19,7 @@ class DetteController extends Controller
     }
 
     public function markaspayed($id){
-        $dette=Dette::findOrFail($id);
+        $dette=Dette::findcOrFail($id);
         Gate::authorize('mark-as-payed',$dette);
         $dette->update(['is_payed'=>true]);
         $dette->expense->user->increment('solde',$dette->amount);

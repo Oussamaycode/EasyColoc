@@ -94,7 +94,7 @@ class RegisteredUserController extends Controller
         $colocation=auth()->user()->colocations()->where('is_active',true)->first();
         $members=Membership::where('colocation_id',$colocation->id)->with('colocation','colocation.users','colocation.owner','colocation.expenses','colocation.expenses.dettes')->get();
 
-        return view('members',compact('members'));
+        return view('members',compact('members','colocation'));
     }
         
     }

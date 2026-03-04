@@ -108,28 +108,28 @@
                             </div>
                             <div>
                                 <div class="flex items-center gap-2">
-                                    <h3 class="text-lg font-bold text-gray-800">{{$membership->owner->name}}</h3>
+                                    <h3 class="text-lg font-bold text-gray-800">{{$colocation->owner->name}}</h3>
                                     <span class="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium">Propriétaire</span>
                                 </div>
-                                <p class="text-gray-500">{{$membership->owner->email}}</p>
+                                <p class="text-gray-500">{{$colocation->owner->email}}</p>
                                 <div class="flex items-center gap-4 mt-2">
                                     <span class="text-sm text-gray-500">
                                         <i class="fas fa-calendar mr-1"></i>
-                                        Membre depuis {{$membership->owner->created_at}}
+                                        Membre depuis {{$colocation->owner->created_at}}
                                     </span>
                                     <span class="text-sm text-green-600">
                                         <i class="fas fa-star mr-1"></i>
-                                        Réputation: {{$membership->owner->reputation}}
+                                        Réputation: {{$colocation->owner->reputation}}
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="text-right">
                             <p class="text-sm text-gray-500">Solde</p>
-                            @if($membership->owner->solde>=0)
-                            <p class="text-xl font-bold text-green-600">+{{$membership->owner->solde}}</p>
-                            @elseif
-                            <p class="text-xl font-bold text-red-600">-{{$membership->owner->solde}}</p>
+                            @if($colocation->owner->solde>=0)
+                            <p class="text-xl font-bold text-green-600">+{{$colocation->owner->solde}}</p>
+                            @else
+                            <p class="text-xl font-bold text-red-600">-{{$colocation->owner->solde}}</p>
                             @endif
                         </div>
                     </div>
@@ -145,18 +145,18 @@
                             </div>
                             <div>
                                 <div class="flex items-center gap-2">
-                                    <h3 class="text-lg font-bold text-gray-800">{{$member->colocation->user->name}}</h3>
+                                    <h3 class="text-lg font-bold text-gray-800">{{$member->user->name}}</h3>
                                     <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">Membre</span>
                                 </div>
-                                <p class="text-gray-500">{{$member->colocation->user->email}}</p>
+                                <p class="text-gray-500">{{$member->user->email}}</p>
                                 <div class="flex items-center gap-4 mt-2">
                                     <span class="text-sm text-gray-500">
                                         <i class="fas fa-calendar mr-1"></i>
-                                        Membre depuis {{$member->colcoation->user->created_at}}
+                                        Membre depuis {{$member->user->created_at}}
                                     </span>
                                     <span class="text-sm text-green-600">
                                         <i class="fas fa-star mr-1"></i>
-                                        Réputation: {{$member->colocation->user->reputation}}
+                                        Réputation: {{$member->user->reputation}}
                                     </span>
                                 </div>
                             </div>
@@ -165,10 +165,10 @@
                             <div class="text-right">
 
                                 <p class="text-sm text-gray-500">Solde</p>
-                             @if($member->colocation->user->solde>=0)
-                            <p class="text-xl font-bold text-green-600">+{{$membership->owner->solde}}</p>
-                            @elseif
-                            <p class="text-xl font-bold text-red-600">-{{$membership->owner->solde}}</p>
+                             @if($member->user->solde>=0)
+                            <p class="text-xl font-bold text-green-600">+{{$member->user->solde}}</p>
+                            @else
+                            <p class="text-xl font-bold text-red-600">-{{$member->user->solde}}</p>
                             @endif
                             <button onclick="openRemoveModal('Marie Lefebvre')" class="p-2 text-gray-400 hover:text-red-600 transition" title="Retirer le membre">
                                 <i class="fas fa-user-minus text-xl"></i>

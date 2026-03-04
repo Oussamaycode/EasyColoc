@@ -65,6 +65,6 @@ class User extends Authenticatable
     }
 
     public function colocation(){
-        return $this->hasOne(Colocation::class);
+        return $this->hasOne(Colocation::class)->where('is_active',true);
     }
 }
