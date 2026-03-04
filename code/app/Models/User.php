@@ -64,7 +64,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Expense::class,'dettes')->withPivot('amount','is_payed');
     }
 
-    public function colocation(){
-        return $this->hasOne(Colocation::class,'memberships')->where('is_active',true);
-    }
+   public function activeColocation()
+   {
+    return $this->belongsToMany(Colocation::class, 'memberships')
+                ->where('colocations.is_active', true);
+   }
 }
