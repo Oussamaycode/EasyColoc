@@ -19,8 +19,8 @@ class ExpenseController extends Controller
     public function index()
     {   
         $categories=Categorie::all();
-        $user=auth()->user()->with(['colocation','colocation.expenses'])->first();
-        return view('expense',compact($user));
+        $Expenses=Expense::where('colocation_id',auth()->user()->activeColocation->id)->get();
+        return view('expense',compact('expenses'));
     }
 
     /**

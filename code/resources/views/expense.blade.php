@@ -178,15 +178,15 @@
                                     <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-shopping-cart text-blue-600 text-sm"></i>
                                     </div>
-                                    <span class="font-medium text-gray-800">{{$expense->description}}</span>
+                                    <span class="font-medium text-gray-800">{{$expense->activeColocation->expense->description}}</span>
                                 </div>
                             </td>
                             <td class="py-4 px-6">
-                                <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">{{$expense->categorie->name}}</span>
+                                <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">{{$user->activeColocation->expense->categorie->name}}</span>
                             </td>
-                            <td class="py-4 px-6 text-gray-600">{{$expense->date}}</td>
-                            <td class="py-4 px-6 text-gray-600">{{$expense->user->name}}</td>
-                            <td class="py-4 px-6 text-right font-medium text-gray-800">{{$expense->amount}}</td>
+                            <td class="py-4 px-6 text-gray-600">{{$expense->activeColocation->expense->date}}</td>
+                            <td class="py-4 px-6 text-gray-600">{{$expense->activeColocation->expense->user->name}}</td>
+                            <td class="py-4 px-6 text-right font-medium text-gray-800">{{$expense->activeColocation->expense->amount}}</td>
                             <td class="py-4 px-6 text-center">
                                 <button onclick="openEditExpenseModal(4)" class="text-gray-400 hover:text-indigo-600 transition mr-2">
                                     <i class="fas fa-edit"></i>
