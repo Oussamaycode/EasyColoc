@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin',[AdminDashboardController::class,'index'])->name('admin.dashboard')->middleware('can:show-administration');
     Route::get('/ban/{user_id}',[PersonController::class,'ban'])->name('user.ban')->middleware('can:show-administration');
     Route::get('/members',[PersonController::class,'showmembers'])->name('show.members');
+    Route::get('/retirer/{user_id}',[PersonController::class,'retirer'])->name('user.retirer')->middleware('can:retirer-membre');
 });
 
 require __DIR__.'/auth.php';

@@ -52,5 +52,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('invite-members',function($user){
             return $user->is_owner===true;
         });
+
+        Gate::define('retirer-membre',function($user){
+            return $user->is_owner===true;
+        });
     }
 }

@@ -48,7 +48,7 @@ class PersonController extends Controller
     public function retirer($user_id){
         Gate::authorize('retirer-membre'); //almost same unction as ban, i copy pased the ban function -> added a gate for authorization and , removed lines (33,34,35) 
 
-                $user=User::find($user_id);
+        $user=User::find($user_id);
         $colocation=$user->colocations()->where('is_active',true)->first();
         $expenses=$user->expenses()->get();
         if ($user->is_owner){
