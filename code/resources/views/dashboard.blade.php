@@ -109,19 +109,29 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-gray-500 mb-1">Ma colocation</p>
-                            <h3 class="text-lg font-bold text-gray-800">Appartement Paris</h3>
+                            <h3 class="text-lg font-bold text-gray-800">{{$colocation->name}}</h3>
                         </div>
                         <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
                             <i class="fas fa-home text-indigo-600 text-xl"></i>
                         </div>
                     </div>
                     <div class="mt-4 flex items-center text-sm">
+                        @if($colocation->is_active===true){
                         <span class="text-green-500 flex items-center gap-1">
                             <i class="fas fa-check-circle"></i>
                             Active
                         </span>
-                        <span class="text-gray-400 mx-2">•</span>
-                        <span class="text-gray-500">3 membres</span>
+                        }
+                        @else{
+
+                        <span class="text-red-500 flex items-center gap-1">
+                        <i class="fas fa-x-circle"></i>
+                            Inactive
+                        </span>
+}
+@endif
+<span class="text-gray-400 mx-2">•</span>
+                        <span class="text-gray-500">{{$colocation->memberships->count()}}</span>
                     </div>
                 </div>
 
@@ -129,7 +139,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-gray-500 mb-1">Mes dépenses ce mois</p>
-                            <h3 class="text-2xl font-bold text-gray-800">€245.00</h3>
+                            <h3 class="text-2xl font-bold text-gray-800">{{$user->expenses->sum('amount')}}</h3>
                         </div>
                         <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                             <i class="fas fa-euro-sign text-green-600 text-xl"></i>
@@ -144,7 +154,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-gray-500 mb-1">Mon solde</p>
-                            <h3 class="text-2xl font-bold text-green-600">+€45.50</h3>
+                            <h3 class="text-2xl font-bold text-green-600">{{$user->solde}}</h3>
                         </div>
                         <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
                             <i class="fas fa-wallet text-emerald-600 text-xl"></i>
@@ -162,7 +172,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-gray-500 mb-1">Ma réputation</p>
-                            <h3 class="text-2xl font-bold text-gray-800">+12</h3>
+                            <h3 class="text-2xl font-bold text-gray-800">{{$user->reputation}}</h3>
                         </div>
                         <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
                             <i class="fas fa-star text-yellow-600 text-xl"></i>
