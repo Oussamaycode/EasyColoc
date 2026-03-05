@@ -144,15 +144,15 @@
                 </div>
                 <div class="bg-white rounded-xl p-4 shadow-sm">
                     <p class="text-sm text-gray-500">Nombre de dépenses</p>
-                    <p class="text-xl font-bold text-gray-800" id="countFiltered">24</p>
+                    <p class="text-xl font-bold text-gray-800" id="countFiltered">{{$expenses->count()}}</p>
                 </div>
                 <div class="bg-white rounded-xl p-4 shadow-sm">
                     <p class="text-sm text-gray-500">Moyenne par dépense</p>
-                    <p class="text-xl font-bold text-gray-800" id="avgFiltered">€51.98</p>
+                    <p class="text-xl font-bold text-gray-800" id="avgFiltered">{{$expenses->avg('amount')}}</p>
                 </div>
                 <div class="bg-white rounded-xl p-4 shadow-sm">
                     <p class="text-sm text-gray-500">Ma part</p>
-                    <p class="text-xl font-bold text-indigo-600">€415.83</p>
+                    <p class="text-xl font-bold text-indigo-600">{{auth()->user()->expenses()->sum('expenses.amount')}}</p>
                 </div>
             </div>
 
