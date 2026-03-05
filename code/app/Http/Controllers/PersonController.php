@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Membership;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Gate;
 
 class PersonController extends Controller
 {
@@ -52,7 +53,7 @@ class PersonController extends Controller
         $colocation=$user->colocations()->where('is_active',true)->first();
         $expenses=$user->expenses()->get();
         if ($user->is_owner){
-            return back()->with('error', 'Owner of collocation cannot be banned.');
+            return back()->with('error', 'Owner of collocation cannot be removed.');
         }
 
         if($colocation){

@@ -6,6 +6,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\DetteController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

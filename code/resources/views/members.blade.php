@@ -96,6 +96,38 @@
                 </button>
             </div>
 
+                    {{-- Toast Container --}}
+<div id="toast-container" class="fixed top-4 right-4 z-[100] flex flex-col gap-2 w-72">
+
+    @if (session('success'))
+        <div class="toast-item flex items-center gap-3 p-3 bg-[#0f4c4c] text-white rounded-lg shadow-lg animate-slide-in">
+            <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-check text-[10px]"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+                <p class="text-[11px] font-medium truncate">{{ session('success') }}</p>
+            </div>
+            <button onclick="removeToast(this)" class="text-white/60 hover:text-white flex-shrink-0">
+                <i class="fas fa-times text-[10px]"></i>
+            </button>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="toast-item flex items-center gap-3 p-3 bg-red-500 text-white rounded-lg shadow-lg animate-slide-in">
+            <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-exclamation text-[10px]"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+                <p class="text-[11px] font-medium truncate">{{ session('error') }}</p>
+            </div>
+            <button onclick="removeToast(this)" class="text-white/60 hover:text-white flex-shrink-0">
+                <i class="fas fa-times text-[10px]"></i>
+            </button>
+        </div>
+    @endif
+</div>
+
             <!-- Members List -->
             <div class="space-y-4">
                 <!-- Owner -->
@@ -170,9 +202,9 @@
                             @else
                             <p class="text-xl font-bold text-red-600">-{{$member->user->solde}}</p>
                             @endif
-                            <button onclick="openRemoveModal('Marie Lefebvre')" class="p-2 text-gray-400 hover:text-red-600 transition" title="Retirer le membre">
+                            <a href="{{route('user.retirer',['user_id'=>$member->id])}}" class="p-2 text-gray-400 hover:text-red-600 transition" title="Retirer le membre">
                                 <i class="fas fa-user-minus text-xl"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
