@@ -35,7 +35,7 @@ class PersonController extends Controller
         $user->save();
         DB::table('sessions')->where('user_id',$user_id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Member removed from colocation Succesfully');
     }
 
     public function showmembers(){
@@ -43,5 +43,34 @@ class PersonController extends Controller
         $members=Membership::where('colocation_id',$colocation->id)->with('colocation','colocation.users','colocation.owner','colocation.expenses','colocation.expenses.dettes')->get();
 
         return view('members',compact('members','colocation'));
+    }
+
+    public function retirer($user_id){
+        Gate::authorize('retirer-membre'); //almost same function as ban, i copy pased the ban function -> added a gate for authorization and , removed lines (33,34,35) 
+
+                $user=User::find($user_id);
+        $colocation=$user->colocations()->where('is_active',true)->first();
+        $expenses=$user->expenses()->get();
+        if ($user->is_owner){
+            return back()->with('error', 'Owner of collocation cannot be banned.');
+        }
+
+        if($colocation){
+        $owner=$colocation->users()->where('is_owner',true)->first();
+
+        foreach($expenses as $expense){
+                $dette=$expense->pivot;
+                $amount=$dette->amount;
+                if($dette->is_payed===false){
+                $expense->users()->detach($user->id);
+                $expense->users()->attach($owner->id,['amount'=>$amount]);
+                }
+        }
+        $colocation->users()->detach($user->id);
+        }
+        $user->decrement('reputation');
+
+        return redirect()->back()->with('success','Member removed from colocation Succesfully');
+
     }
 }
