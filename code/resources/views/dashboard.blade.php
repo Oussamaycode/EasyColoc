@@ -120,12 +120,11 @@
                         </div>
                     </div>
                     <div class="mt-4 flex items-center text-sm">
-                        @if($colocation->is_active===true){
+                        @if($colocation->is_active===true)
                         <span class="text-green-500 flex items-center gap-1">
-                            <i class="fas fa-check-circle"></i>
-                            Active
+                            <i class="fas fa-check-circle">Active</i>
+                            
                         </span>
-                        }
                         @else{
 
                         <span class="text-red-500 flex items-center gap-1">
@@ -209,51 +208,32 @@
                                 </tr>
                             </thead>
                             <tbody id="recentExpenses">
+
+                                @foreach($expenses as $expense)
                                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                                     <td class="py-3 px-4">
                                         <div class="flex items-center gap-3">
                                             <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                                                 <i class="fas fa-shopping-cart text-blue-600 text-sm"></i>
                                             </div>
-                                            <span class="font-medium text-gray-800">Courses hebdomadaires</span>
+                                            @if($expense)
+                                            <span class="font-medium text-gray-800">{{$expense->description}}</span>
+                                            @endif
                                         </div>
                                     </td>
                                     <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Alimentation</span>
+                                        @if($expense)
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">{{$expense->categorie}}</span>
+                                        @endif
                                     </td>
-                                    <td class="py-3 px-4 text-gray-600">Marie L.</td>
-                                    <td class="py-3 px-4 text-right font-medium text-gray-800">€87.50</td>
+                                    @if($expense)
+                                    <td class="py-3 px-4 text-gray-600">{{$expense->user->name}}.</td>
+                                    @endif
+                                    @if($expense)
+                                    <td class="py-3 px-4 text-right font-medium text-gray-800">{{$expense->amount}}</td>
+                                    @endif
                                 </tr>
-                                <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                    <td class="py-3 px-4">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                                                <i class="fas fa-bolt text-purple-600 text-sm"></i>
-                                            </div>
-                                            <span class="font-medium text-gray-800">Facture électricité</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Charges</span>
-                                    </td>
-                                    <td class="py-3 px-4 text-gray-600">Vous</td>
-                                    <td class="py-3 px-4 text-right font-medium text-gray-800">€124.00</td>
-                                </tr>
-                                <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                    <td class="py-3 px-4">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                                                <i class="fas fa-utensils text-orange-600 text-sm"></i>
-                                            </div>
-                                            <span class="font-medium text-gray-800">Dîner entre colocs</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">Loisirs</span>
-                                    </td>
-                                    <td class="py-3 px-4 text-gray-600">Pierre D.</td>
-                                    <td class="py-3 px-4 text-right font-medium text-gray-800">€45.00</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -302,28 +282,20 @@
                     <a href="members.html" class="text-indigo-600 text-sm font-medium hover:underline">Gérer les membres</a>
                 </div>
                 <div class="flex flex-wrap gap-4">
+                    @foreach($colocation->users as $user)
                     <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                         <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-medium">JD</div>
                         <div>
-                            <p class="font-medium text-gray-800">Jean Dupont</p>
+                            <p class="font-medium text-gray-800">{{$user->name}}</p>
+                            @if($user->is_owner===true)
                             <span class="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded-full">Propriétaire</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center text-white font-medium">ML</div>
-                        <div>
-                            <p class="font-medium text-gray-800">Marie Lefebvre</p>
+                            @else
                             <span class="text-xs px-2 py-0.5 bg-gray-200 text-gray-700 rounded-full">Membre</span>
+                            @endif
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-medium">PD</div>
-                        <div>
-                            <p class="font-medium text-gray-800">Pierre Durand</p>
-                            <span class="text-xs px-2 py-0.5 bg-gray-200 text-gray-700 rounded-full">Membre</span>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                    
             </div>
         </main>
     </div>
