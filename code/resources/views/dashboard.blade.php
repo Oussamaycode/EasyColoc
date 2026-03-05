@@ -109,7 +109,11 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-gray-500 mb-1">Ma colocation</p>
+                            @if($colocation)
                             <h3 class="text-lg font-bold text-gray-800">{{$colocation->name}}</h3>
+                            @else
+                            <h3 class="text-lg font-bold text-gray-800">NAN</h3>
+                            @endif
                         </div>
                         <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
                             <i class="fas fa-home text-indigo-600 text-xl"></i>
